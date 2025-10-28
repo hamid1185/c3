@@ -118,7 +118,7 @@ if ($method === 'GET' && $action === 'similar') {
     $id = $_GET['id'] ?? 0;
     $limit = $_GET['limit'] ?? 3;
     $artworks = read_json('submissions.json');
-    
+
     $current = null;
     foreach ($artworks as $art) {
         if ($art['id'] == $id) {
@@ -126,19 +126,45 @@ if ($method === 'GET' && $action === 'similar') {
             break;
         }
     }
-    
+
     if (!$current) {
         send_response(['success' => true, 'artworks' => []]);
     }
-    
+
     $similar = array_filter($artworks, function($art) use ($current, $id) {
-        return $art['id'] != $id && 
-               $art['type'] === $current['type'] && 
+        return $art['id'] != $id &&
+               $art['type'] === $current['type'] &&
                $art['status'] === 'approved';
     });
-    
+
     $similar = array_slice(array_values($similar), 0, $limit);
     send_response(['success' => true, 'artworks' => $similar]);
+}
+
+if ($method === 'GET' && $action === 'search') {
+    $keyword = $_GET['keyword'] ?? '';
+
+    if (empty($keyword)) {
+        send_response(['success' => false, 'error' => 'Keyword required'], 400);
+    }
+
+    $artworks = read_json('submissions.json');
+    $approved = array_filter($artworks, function($art) {
+        return $art['status'] === 'approved';
+    });
+
+    $results = array_filter($approved, function($art) use ($keyword) {
+        return stripos($art['title'], $keyword) !== false ||
+               stripos($art['description'], $keyword) !== false ||
+               stripos($art['artist_name'], $keyword) !== false ||
+               stripos($art['type'], $keyword) !== false;
+    });
+
+    send_response([
+        'success' => true,
+        'artworks' => array_values($results),
+        'count' => count($results)
+    ]);
 }
 
 if ($method === 'POST' && $action === 'submit') {

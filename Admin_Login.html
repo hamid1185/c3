@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Indigenous Art Atlas</title>
+    <link rel="stylesheet" href="Login-SignUp-Admin-style.css">
+    <style>
+        .admin-badge {
+            background-color: #333;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="containter">
+        <div class="login-box">
+            <div class="admin-badge">Administrator Access</div>
+            <h2>Admin Login</h2>
+            <p style="color: #666; margin-bottom: 30px;">Secure login for authorized administrators only</p>
+
+            <form id="adminLoginForm">
+                <div class="input-box">
+                    <input type="text" id="username" required>
+                    <label>Username</label>
+                </div>
+
+                <div class="input-box">
+                    <input type="password" id="password" required>
+                    <label>Password</label>
+                </div>
+
+                <div id="errorMessage" class="error-message"></div>
+
+                <button type="submit" class="btn">Login as Admin</button>
+            </form>
+
+            <a href="Login.html" class="back-link">← Back to User Login</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('adminLoginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            errorMessage.textContent = '';
+
+            try {
+                const response = await fetch('api/auth.php?action=login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    if (data.user.role === 'admin') {
+                        localStorage.setItem('user', JSON.stringify(data.user));
+                        window.location.href = 'Admin_Dashboard.html';
+                    } else {
+                        errorMessage.textContent = 'Access denied. Admin credentials required.';
+                    }
+                } else {
+                    errorMessage.textContent = data.error || 'Invalid admin credentials';
+                }
+            } catch (error) {
+                errorMessage.textContent = 'Connection error. Please try again.';
+            }
+        });
+    </script>
+</body>
+</html>
