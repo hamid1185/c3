@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link rel="stylesheet" href="Login-SignUp-Admin-style.css" />
+  </head>
+  <body>
+    <div class="center-container">
+      <div class="auth-container">
+        <div class="left-form">
+          <div class="form-title">
+            <h1 class="title">Welcome Back</h1>
+            <div class="subtitle">Sign In to your account</div>
+          </div>
+          <form id="loginForm">
+            <label for="name" class="block-label">Username</label>
+            <input type="text" id="name" required />
+
+            <label for="password" class="block-label">Password</label>
+            <input type="password" id="password" required />
+
+            <div class="forgot-password-box">
+              <a href="#" class="forgot-password">Forgot Password?</a>
+            </div>
+
+            <div class="rememberMe">
+              <input type="checkbox" id="rememberMe" />
+              <label for="rememberMe">Remember on Device</label>
+            </div>
+
+            <button type="submit" class="submitBtn">Sign In</button>
+          </form>
+          <div class="footer-text">
+            Don’t have an account?
+            <a href="SignUp-page.html" class="footer-link">Register</a>
+          </div>
+        </div>
+        <div class="img-container">
+          <img src="imgs/Login-page-img.jpg" alt="Login Art Image" />
+        </div>
+
+        <script src="SignIn-SignUp-script.js"></script>
+      </div>
+    </div>
+  </body>
+</html>

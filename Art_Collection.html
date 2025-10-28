@@ -1,0 +1,116 @@
+<!Doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/1165876da6.js" crossorigin="anonymous"></script>
+    <title>Our Art Collection</title>
+    <link rel="stylesheet" href="Art_Collection.css">
+    <script src="Art_Collection_pagination.js" defer></script>
+    <script src="auth.js"></script>
+</head>
+<body>
+    <header>
+        <div class="LOG0">LoGo</div>
+        <nav>
+            <a href="Home-Page.html">Home</a>
+            <a href="UsageGuidlines.html">Usage Guidelines</a>
+            <a href="Contact_Us.html">Contact</a>
+            <a href="Art_Collection.html">Art</a>
+            <a href="AboutUs.html">About us</a>
+            <a href="SignUp-page.html">Signin/Signup</a>
+        </nav>
+        <div class="search">
+            <input type="text" placeholder="Search">
+            <button> Search</button>
+        </div>
+    </header>
+    <h2 class="title">Our Art Collection</h2>
+    <div class="Search-bar">
+        <input type="text" placeholder="Search">
+    </div>
+    <div class="filters">
+        <select>
+            <option disabled selected>Type</option>
+            <option value="painting">Painting</option>
+            <option value="sculpture">Sculpture</option>
+            <option value="textile">Textile</option>
+            </select>
+        <select>
+            <option disabled selected>Periods</option>
+            <option value="ancient">Ancient</option>
+            <option value="renaissance">Renaissance</option>
+            <option value="contemporary">Contemporary</option>
+        </select>
+        <select>
+            <option disabled selected>Location</option>
+            <option value="nsw">NSW (Sydney)</option>
+            <option value="sa">SA (Adelaide)</option>
+            <option value="wa">WA (Perth)</option>
+        </select>
+        <select>
+            <option disabled selected>Sort</option>
+            <option value="title-asc">Title (A-Z)</option>
+            <option value="title-desc">Title (Z-A)</option>
+            <option value="date-newest">Date Added (Newest)</option>
+            <option value="date-oldest">Date Added (Oldest)</option>
+        </select>
+        <select id="limit-select">
+            <option value="8" selected>8 Items/Page</option>
+            <option value="16">16 Items/Page</option>
+            <option value="32">32 Items/Page</option>
+            <option value="64">64 Items/Page</option>
+        </select>
+        <button class="apply">Apply Filter</button>
+        <button class="Clear">Clear All</button>
+    </div>
+    <hr>
+    <div class="grid">
+        </div>
+    <div class="Pagination">
+        </div>
+    </hr>
+
+
+    <footer id="footer">
+        <div class="footer-container">
+            <div class="brand">
+                <h2>Indigenous Art Atlas</h2>
+                <p>Email: <a href="mailto:IndegeniousArtAtlas@gmail.com">IndegeniousArtAtlas@gmail.com</a></p>
+                <div class="follow-us">
+                    <h3>Follow Us</h3>
+                    <ul class="Social-Media">
+                        <li><a href="https://facebook.com" target="_blank" class="facebook"><i
+                                    class="fab fa-facebook"></i></a></li>
+                        <li><a href="https://twitter.com" target="_blank" class="twitter"><i
+                                    class="fab fa-twitter"></i></a></li>
+                        <li><a href="https://instagram.com" target="_blank" class="instagram"><i
+                                    class="fab fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="Links">
+                <h3>Quick Links</h3>
+                <ul class="list">
+                    <li><a href="Home-Page.html">Home</a></li>
+                    <li><a href="UsageGuidlines.html">Usage Guidelines</a></li>
+                    <li><a href="Contact_Us.html">Contact</a></li>
+                    <li><a href="AboutUs.html">About us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-content" id="contact">
+                <h3>Contact Us</h3>
+                <p>Phone: +61 239 456 763</p>
+            </div>
+        </div>
+
+        <div class="bottom-bar">
+            <p>&copy; 2025 Indigenous Art Atlas . All rights reserved</p>
+        </div>
+    </footer>
+</body>
+
+</html>

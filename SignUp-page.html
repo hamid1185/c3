@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="Login-SignUp-Admin-style.css" />
+  </head>
+  <body>
+    <div class="center-container">
+      <div class="auth-container register-container">
+        <div class="img-container">
+          <img src="imgs/SignUp-image.webp" alt="SignUp Art Image">
+        </div>
+        <div class="right-form">
+          <div class="form-title">
+            <h2 class="title">Create Your Account</h2>
+          </div>
+          <form id="registerForm">
+            <div class="grid-half">
+              <div>
+                <label for="name" class="block-label">Username</label>
+                <input type="text" id="name" required />
+              </div>
+              <div>
+                <label for="email" class="block-label">Email Address</label>
+                <input type="email" id="email" required />
+              </div>
+              <div>
+                <label for="password" class="block-label">Password</label>
+                <input type="password" id="password" required />
+              </div>
+              <div>
+                <label for="confirmPassword" class="block-label">Confirm Password</label>
+                <input type="password" id="confirmPassword" required />
+              </div>
+            </div>
+            <div class="dropdown">
+              <label for="accountType" class="block-label">Account Type</label>
+              <select id="accountType" required>
+                <option value="general">General</option>
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+                <option value="Artist">Artist</option>
+              </select>
+            </div>
+            <button type="submit" class="submitBtn">Create Account</button>
+          </form>
+          <div class="footer-text">
+            Already have an account?
+            <a href="Login.html" class="footer-link">Sign In</a>
+          </div>
+        </div>
+        <script src="SignIn-SignUp-script.js"></script>
+      </div>
+    </div>
+  </body>
+</html>

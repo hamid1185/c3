@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submit New Art Entry • Art Atlas</title>
+  <link rel="stylesheet" href="Artist_New_entry.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="auth.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="topbar">
+      <div class="logo">LOGO</div>
+      <nav>
+        <a href="Home-Page.html">Home</a>
+        <a href="Header_Footer.html">Usage Guidelines</a>
+        <a href="Contact_Us.html">Contact</a>
+        <a href="Art_Collection.html">Art</a>
+        <a href="AboutUs.html">About us</a>
+        <a href="Login.html">Sign/Signup</a>
+      </nav>
+      <div class="search">
+        <input type="text" placeholder="Search" />
+        <button>Search</button>
+      </div>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <header class="page-header">
+      <h1>Submit New Art Entry</h1>
+      <p>Share Your Art Discovery With The Community</p>
+    </header>
+
+    <form id="art-form" enctype="multipart/form-data">
+
+      <div class="grid-2">
+        <fieldset class="card">
+          <legend>Art Details</legend>
+
+          <label for="title">Title *</label>
+          <input type="text" id="title" name="title" required />
+          <small>Use the known or working title.</small>
+
+          <label for="art-type">Art Type</label>
+          <select id="art-type" name="type"> <option value="">Select type</option>
+            <option value="painting">Painting</option>
+            <option value="sculpture">Sculpture</option>
+            <option value="photography">Photography</option>
+            <option value="crafts">Crafts</option>
+          </select>
+
+          <label for="description">Description</label>
+          <textarea id="description" name="description" rows="4" maxlength="150"></textarea> <div class="meta-row">
+            <small>Materials, size, subject, notable features.</small>
+            <small class="count"><span id="desc-count">0</span>/150</small>
+          </div>
+
+          <label for="condition-note">Condition/Quality Note</label>
+          <input type="text" id="condition-note" name="condition_note" />
+          <small>Notes on the condition or quality of the artwork.</small>
+
+        </fieldset>
+
+        <fieldset class="card">
+          <legend>Artist Information</legend>
+
+          <label for="artistname">Artist Name *</label>
+          <input type="text" id="artistname" name="artist_name" required /> <small>Enter the name of the artist, or 'Unknown'.</small>
+
+          <label for="period">Period</label>
+          <select id="period" name="period">
+            <option value="">Select period</option>
+            <option value="contemporary">Contemporary</option>
+            <option value="modern">Modern</option>
+            <option value="renaissance">Renaissance</option>
+            <option value="ancient">Ancient</option>
+          </select>
+        </fieldset>
+      </div>
+
+      <fieldset class="card">
+        <legend>Location Details</legend>
+        
+        <div id="map-picker" style="height: 300px; margin-bottom: 15px; border-radius: 4px;"></div>
+        
+        <label for="location">Coordinates (Latitude,Longitude)</label>
+        <input type="text" id="location" name="location" placeholder="e.g., -33.8688,151.2093" readonly />
+
+        <label for="location-notes">Location Notes</label>
+        <input type="text" id="location-notes" name="location_notes" /> <label>
+          <input type="checkbox" id="sensitivity" name="location_sensitive" /> Culturally sensitive / Private land
+        </label>
+      </fieldset>
+
+      <fieldset class="card">
+        <legend>Image Upload</legend>
+        <div class="image-upload-container">
+          <label for="image-upload" class="upload-area" id="upload-area">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <p>Click to select images or drag and drop(max 5mb each</p>
+          </label>
+        <input type="file" id="image-upload" name="images[]" multiple accept="image/*" style="display: none;">
+        
+        <div id="image-preview" class="image-preview"></div>
+    </div>
+    
+      <div class="form-actions">
+        <button type="button" id="save-draft" class="btn-secondary">Save as Draft</button>
+        <button type="submit" class="btn-primary">Submit for Review</button>
+      </div>
+
+      <div id="status" class="status" role="status" aria-live="polite"></div>
+    </form>
+  </main>
+
+  <footer id="footer">
+        <div class="footer-container">
+            <div class="brand">
+                <h2>Indigenous Art Atlas</h2>
+                <p>Email: <a href="mailto:IndegeniousArtAtlas@gmail.com">IndegeniousArtAtlas@gmail.com</a></p>
+                <div class="follow-us">
+                    <h3>Follow Us</h3>
+                    <ul class="Social-Media">
+                        <li><a href="https://facebook.com" target="_blank" class="facebook"><i
+                                    class="fab fa-facebook"></i></a></li>
+                        <li><a href="https://twitter.com" target="_blank" class="twitter"><i
+                                    class="fab fa-twitter"></i></a></li>
+                        <li><a href="https://instagram.com" target="_blank" class="instagram"><i
+                                    class="fab fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="Links">
+                <h3>Quick Links</h3>
+                <ul class="list">
+                    <li><a href="Home-Page.html">Home</a></li>
+                    <li><a href="UsageGuidlines.html">Usage Guidelines</a></li>
+                    <li><a href="Contact_Us.html">Contact</a></li>
+                    <li><a href="AboutUs.html">About us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-content">
+                <h3>Contact Us</h3>
+                <p>Phone: +61 239 456 763</p>
+            </div>
+        </div>
+
+        <div class="bottom-bar">
+            <p>&copy; 2025 Indigenous Art Atlas . All rights reserved</p>
+        </div>
+    </footer>
+
+    <script src="Artist_New_entry.js"></script>
+</body>
+</html>

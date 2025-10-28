@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Profile - Dashboard</title>
+    <link rel="stylesheet" href="artist.css">
+    <link rel="stylesheet" href="homePageStyle.css">
+    <script src="auth.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300,400,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- <header class="navbar">
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="AboutUs.html">About Us</a></li>
+                    <li><a href="UsageGuidlines.html">Usage Guidelines</a></li>
+                    <li><a href="Contact_Us.html">Contact Us</a></li>
+                    <li><nav class="nav"><a href="Login.html">Sign/Signup</a></nav></li>
+                </ul>
+            </nav>
+        </div>
+    </header> -->
+        <header class="header">
+        <div class="logo">LOGO</div>
+        <nav class="nav">
+            <a href="Home-Page.html">Home</a>
+            <a href="UsageGuidlines.html">Usage Guidelines</a>
+            <a href="Contact_Us.html">Contact</a>
+            <a href="Art_Collection.html">Art</a>
+            <a href="AboutUs.html">About us</a>
+            <a href="Login.html">Sign/Signup</a>
+        </nav>
+    </header>
+
+    <main class="container profile-page">
+        <h1 class="page-title">Profile Dashboard</h1>
+
+        <section class="artist-profile-card">
+            <div class="profile-header">
+                <img src="https://via.placeholder.com/80/28a745/FFFFFF?text=A" alt="Artist Avatar" class="profile-avatar">
+                <div class="profile-info">
+                    <h2>[Artist Name]</h2>
+                    <p>[Artist Biography]</p>
+                    <p>Contact: <a href="mailto:email@example.com">email@example.com</a></p>
+                    <button class="btn btn-primary" id="editProfileBtn">Edit Profile</button>
+                </div>
+            </div>
+        </section>
+
+        <h2 class="section-title">My Submissions</h2>
+
+        <section class="submission-summary">
+            <div class="summary-card">
+                <h3>Total Submissions</h3>
+                <p id="totalSubmissions">0</p>
+            </div>
+            <div class="summary-card">
+                <h3>Approved</h3>
+                <p id="approvedSubmissions">0</p>
+            </div>
+            <div class="summary-card">
+                <h3>Pending</h3>
+                <p id="pendingSubmissions">0</p>
+            </div>
+        </section>
+
+        <div class="submission-actions">
+            <!-- <a href="Artist_New_entry.html" class="btn btn-secondary">Submit New Artwork</a> -->
+            <button class="btn btn-secondary" id="submitNewArtworkBtn"><a href="Artist_New_entry.html">Submit New Artwork</a></button>
+        </div>
+
+        <section class="artwork-list">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Submitted</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="artworkTableBody">
+                    <!-- Artworks will be inserted here by JavaScript -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>About</h3>
+                <p>Dedicated to showcasing and preserving Indigenous art.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="Home-Page.html">Home</a></li>
+                    <li><a href="UsageGuidlines.html">Usage Guidelines</a></li>
+                    <li><a href="Contact_Us.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: support@artatlas.org</p>
+                <p>Phone: +61 239 456 763</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Indigenous Art Atlas. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Profile Edit Modal -->
+    <div id="editProfileModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button profile-close-button">&times;</span>
+            <h2>Edit Profile</h2>
+            <form id="editProfileForm" data-user-id="">
+                <div class="form-group">
+                    <label for="artistName">Name:</label>
+                    <input type="text" id="artistName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="artistBio">Biography:</label>
+                    <textarea id="artistBio" name="bio" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="artistEmail">Email:</label>
+                    <input type="email" id="artistEmail" name="email" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Artwork Edit Modal (UPDATED CONTENT) -->
+    <div id="editArtworkModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button artwork-close-button">&times;</span>
+            <h2>Edit Artwork Submission</h2>
+            <form id="editArtworkForm" data-submission-id="">
+                <div class="form-group">
+                    <label for="artworkTitle">Title:</label>
+                    <input type="text" id="artworkTitle" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="artworkType">Type:</label>
+                    <input type="text" id="artworkType" name="type" required>
+                </div>
+                <div class="form-group">
+                    <label for="artworkDescription">Description:</label>
+                    <textarea id="artworkDescription" name="description" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="artworkArtistName">Artist Name:</label>
+                    <input type="text" id="artworkArtistName" name="artist_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="artworkPeriod">Period:</label>
+                    <input type="text" id="artworkPeriod" name="period">
+                </div>
+                <div class="form-group">
+                    <label for="artworkLocation">Location (GPS/Text):</label>
+                    <input type="text" id="artworkLocation" name="location">
+                </div>
+                <div class="form-group">
+                    <label for="artworkLocationNotes">Location Notes:</label>
+                    <textarea id="artworkLocationNotes" name="location_notes" rows="2"></textarea>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="artworkLocationSensitive" name="location_sensitive">
+                    <label for="artworkLocationSensitive" style="display: inline; margin-left: 10px;">Location Sensitive (Do not publish exact coordinates)</label>
+                </div>
+                <div class="form-group">
+                    <label for="artworkConditionNote">Condition Note:</label>
+                    <textarea id="artworkConditionNote" name="condition_note" rows="2"></textarea>
+                </div>
+
+
+                
+               <div class="form-group">
+    <label>Artwork Images</label>
+    
+    <!-- All images preview (existing + new) -->
+    <div id="allImagesPreview" class="images-preview" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; margin: 15px 0;"></div>
+    
+    <!-- New image upload -->
+    <div class="image-upload-container">
+        <label for="artworkImages" class="upload-area" id="upload-area" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; border: 2px dashed #ccc; border-radius: 8px; cursor: pointer; text-align: center;">
+            <i class="fas fa-cloud-upload-alt" style="font-size: 24px; margin-bottom: 10px;"></i>
+            <p style="margin: 0 0 8px 0; font-weight: 600;">Click to select images or drag and drop</p>
+            <span style="color: #666;">Supports JPG, PNG, GIF (Max 5MB each)</span>
+        </label>
+        <input type="file" id="artworkImages" name="images[]" multiple accept="image/*" style="display: none;">
+    </div>
+    
+    <!-- Hidden field to track ALL images (remaining after deletions) -->
+    <input type="hidden" id="finalImages" name="final_images" value="[]">
+</div>
+
+
+                <div class="form-group">
+                    <label for="artworkStatus">Status (Read-Only for Artist):</label>
+                    <input type="text" id="artworkStatus" name="status" readonly>
+                </div>
+
+                <input type="hidden" id="artworkUserId" name="user_id">
+                
+                <button type="submit" class="btn btn-primary">Modify</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="artist.js"></script>
+</body>
+</html>

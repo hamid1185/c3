@@ -1,0 +1,357 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: white;
+  color: black;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+
+}
+header .logo {
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: black;
+}
+header nav {
+  margin-left: 250px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+header nav a {
+  margin: 12px;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+header nav a:hover {
+  background: #f0f0f0;
+  text-decoration: none;
+}
+header .search {
+  margin-left: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+header .search input {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 999px;
+  min-width: 180px;
+}
+header .search button {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 999px;
+  background: black;
+  color: white;
+  cursor: pointer;
+}
+header .search button:hover {
+  background: #333;
+}
+/* Title */
+.title {
+  text-align: center;
+  margin: 30px 0 15px;
+  font-size: 24px;
+  color: black;
+}
+
+/* Search Bar */
+.Search-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.Search-bar input {
+  width: 50%;
+  padding: 10px 18px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+.filters select,
+.filters button {
+  padding: 8px 14px;
+  border: 1px solid #bbb;
+  border-radius: 20px;
+  cursor: pointer;
+  background: #fff;
+}
+
+.filters button.apply {
+  background: black;
+  color: #fff;
+}
+.filters button.apply:hover {
+  background: #333;
+}
+
+.filters button.Clear {
+  background: black;
+  color: #fff;
+}
+.filters button.Clear:hover {
+  background: #333;
+}
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  padding: 0 60px;
+}
+
+.Card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: center;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.Card img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+.Card img:hover {
+  transform: scale(1);
+}
+
+.hidden {
+  display: none;
+}
+
+.Card-info {
+  margin-top: 10px;
+  font-size: 18px;
+  text-align: center;
+}
+.Card-info .Art_Title {
+  margin: 6px 0 8px;
+  color: black;
+}
+
+.Card-info .art-detail-link {
+  display: inline-block;
+  margin-top: 2px;
+  color: black;
+}
+.actions {
+  display: flex;
+  justify-content: flex-end;/* centers the button horizontally */
+  align-items: center;/* centers vertically */
+  height: 5rem;
+}
+.ViewMore_Button {
+  position: relative;
+  right: 40px;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+.ViewMore_Button:hover {
+  background: #333;
+}
+
+hr {
+  margin: 35px;
+  border: none;
+  height: 2px;
+  background-color: #939292;
+}
+
+/* Pagination */
+.Pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 35px 0;
+}
+.Pagination button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: #ddd;
+  cursor: pointer;
+}
+
+.Pagination button.active {
+  background: black;
+  color: #fff;
+}
+.Pagination button:hover {
+  background-color: #f0f0f0;
+}
+
+/* Footer  */
+
+#footer {
+  background-color: black;
+  color: white;
+  padding: 40px 0 0 0;
+  margin-top: 60px;
+  border-top: 1px solid #ccc;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 64px 40px 64px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand h2 {
+  color: white;
+  font-size: 24px;
+  margin: 0 0 15px 0;
+}
+
+.brand p {
+  margin: 0 0 20px 0;
+  color: #ccc;
+}
+
+.brand a {
+  color: white;
+  text-decoration: none;
+}
+
+.brand a:hover {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.follow-us h3 {
+  color: white;
+  font-size: 16px;
+  margin: 0 0 10px 0;
+  border-bottom: 1px solid #555;
+  padding-bottom: 5px;
+}
+
+.Links h3 {
+  color: white;
+  font-size: 18px;
+  margin: 0 0 15px 0;
+  border-bottom: 1px solid #555;
+  padding-bottom: 8px;
+}
+
+.footer-content h3 {
+  color: white;
+  font-size: 18px;
+  margin: 0 0 15px 0;
+  border-bottom: 1px solid #555;
+  padding-bottom: 8px;
+}
+
+.footer-content p {
+  margin: 8px 0;
+  color: #ccc;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list li {
+  margin-bottom: 8px;
+}
+
+.list a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.list a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.Social-Media {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 15px;
+}
+
+.Social-Media a {
+  color: #ccc;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.Social-Media a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.bottom-bar {
+  border-top: 1px solid #555;
+  padding: 20px 0;
+  text-align: center;
+  background-color: #1a1a1a;
+}
+
+.bottom-bar p {
+  color: #888;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    padding: 0 16px 40px 16px;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    text-align: center;
+  }
+}

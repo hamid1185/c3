@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Art Details</title>
+  
+  <style>
+    /* ---------- Base ---------- */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: black;
+      background: white;
+    }
+
+    /* ---------- Header / Nav ---------- */
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e7e7e7;
+    }
+
+    .topbar {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 15px 40px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      color: black;
+    }
+
+    nav {
+      margin-left: auto;
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: black;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 4px;
+    }
+
+    nav a:hover {
+      background-color: #f0f0f0;
+      text-decoration: none;
+    }
+
+    .search {
+      margin-left: 15px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .search input {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 999px;
+      min-width: 180px;
+    }
+
+    .search button {
+      padding: 8px 16px;
+      border: 0;
+      border-radius: 999px;
+      background: black;
+      color: white;
+      cursor: pointer;
+    }
+
+    .search button:hover {
+      background: #333;
+    }
+
+    /* ---------- Page Container ---------- */
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 30px 40px;
+    }
+
+    /* ---------- Top Section: Info | Image ---------- */
+    .art-details {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 40px;
+      align-items: start;
+      margin-top: 10px;
+      margin-bottom: 40px;
+    }
+
+    .info h1 {
+      font-size: 32px;
+      margin: 8px 0 20px;
+      font-weight: 700;
+      color: black;
+    }
+
+    .info p {
+      margin: 12px 0 16px;
+      line-height: 1.35;
+      color: black;
+    }
+
+    .info p b {
+      display: inline-block;
+      min-width: 170px;
+      color: black;
+    }
+
+    /* Image Slider Styles */
+    .image-slider {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .slider-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      margin-bottom: 15px;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.3s ease-in-out;
+      height: 400px;
+    }
+
+    .slide {
+      min-width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.9);
+      color: #333;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slider-btn:hover {
+      background: white;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .prev-btn {
+      left: 15px;
+    }
+
+    .next-btn {
+      right: 15px;
+    }
+
+    .image-counter {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .thumbnails {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 10px;
+    }
+
+    .thumbnail {
+      width: 60px;
+      height: 45px;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      opacity: 0.7;
+    }
+
+    .thumbnail:hover {
+      opacity: 0.9;
+      transform: scale(1.05);
+    }
+
+    .thumbnail.active {
+      border-color: #007bff;
+      opacity: 1;
+    }
+
+    /* Hide navigation if only one image */
+    .single-image .slider-btn,
+    .single-image .image-counter {
+      display: none;
+    }
+
+    /* ---------- Section Title ---------- */
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 35px 0 20px;
+      color: black;
+    }
+
+    /* ---------- Similar Collection ---------- */
+    .similar {
+      background: #fff;
+      padding: 15px 0 30px;
+    }
+
+    .collection {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    }
+
+    .thumb {
+      border-radius: 10px;
+      background: #f0f0f0;
+      aspect-ratio: 16/9;
+      display: grid;
+      place-items: center;
+      color: black;
+      font-weight: 600;
+      border: 1px solid #ddd;
+    }
+
+    .meta-line {
+      height: 8px;
+      border-radius: 6px;
+      background: #ddd;
+      margin: 4px 0;
+    }
+
+    .meta-line.short {
+      width: 60%;
+    }
+
+    .meta-line.long {
+      width: 85%;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      background: #fff;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    .view-more-wrap {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+
+    .view-more {
+      padding: 10px 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: black;
+      color: white;
+      cursor: pointer;
+    }
+
+    .view-more:hover {
+      background: #333;
+    }
+
+    /* ---------- Footer ---------- */
+    #footer {
+      background-color: black;
+      color: white;
+      padding: 50px 0 0 0;
+      margin-top: 80px;
+      border-top: 1px solid #ccc;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px 50px 40px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand h2 {
+      color: white;
+      font-size: 24px;
+      margin: 0 0 20px 0;
+    }
+
+    .brand p {
+      margin: 0 0 25px 0;
+      color: #ccc;
+    }
+
+    .brand a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .brand a:hover {
+      color: #ccc;
+      text-decoration: none;
+    }
+
+    .follow-us h3 {
+      color: white;
+      font-size: 16px;
+      margin: 0 0 15px 0;
+      border-bottom: 1px solid #555;
+      padding-bottom: 8px;
+    }
+
+    .Links h3 {
+      color: white;
+      font-size: 18px;
+      margin: 0 0 20px 0;
+      border-bottom: 1px solid #555;
+      padding-bottom: 10px;
+    }
+
+    .footer-content h3 {
+      color: white;
+      font-size: 18px;
+      margin: 0 0 20px 0;
+      border-bottom: 1px solid #555;
+      padding-bottom: 10px;
+    }
+
+    .footer-content p {
+      margin: 10px 0;
+      color: #ccc;
+    }
+
+    .list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .list li {
+      margin-bottom: 12px;
+    }
+
+    .list a {
+      color: #ccc;
+      text-decoration: none;
+    }
+
+    .list a:hover {
+      color: white;
+      text-decoration: none;
+    }
+
+    .Social-Media {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 20px;
+    }
+
+    .Social-Media a {
+      color: #ccc;
+      font-size: 20px;
+      text-decoration: none;
+    }
+
+    .Social-Media a:hover {
+      color: white;
+      text-decoration: none;
+    }
+
+    .bottom-bar {
+      border-top: 1px solid #555;
+      padding: 25px 0;
+      text-align: center;
+      background-color: #1a1a1a;
+    }
+
+    .bottom-bar p {
+      color: #888;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .footer-container {
+        padding: 0 20px 40px 20px;
+        grid-template-columns: 1fr;
+        gap: 35px;
+        text-align: center;
+      }
+    }
+
+    /* Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      padding: 0 40px;
+      margin-bottom: 30px;
+    }
+
+    .Card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      text-align: center;
+      padding-bottom: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .Card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .Card img:hover {
+      transform: scale(1.05);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .Card-info {
+      margin-top: 15px;
+      font-size: 18px;
+      text-align: center;
+      padding: 0 10px;
+    }
+
+    .Card-info .Art_Title {
+      margin: 8px 0 12px;
+      color: black;
+    }
+
+    .Card-info .art-detail-link {
+      display: inline-block;
+      margin-top: 5px;
+      color: black;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      height: 6rem;
+      padding: 0 40px;
+    }
+
+    .ViewMore_Button {
+      position: relative;
+      right: 0;
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      background-color: black;
+      color: white;
+      cursor: pointer;
+    }
+
+    .ViewMore_Button:hover {
+      background: #333;
+    }
+   .report {
+  margin-top: 40px;
+  padding: 20px 0;
+  border-top: 1px solid #ddd;
+}
+
+.report-btn {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.report-btn:hover {
+  background-color: #333;
+}
+
+.report-form {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  max-width: 500px;
+}
+
+.report-form label {
+  display: block;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.report-form select,
+.report-form textarea {
+  width: 100%;
+  margin-top: 6px;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-family: inherit;
+}
+
+.submit-btn {
+  margin-top: 15px;
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #333;
+}
+
+.hidden {
+  display: none;
+}
+.art-grid {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+.art-grid .section-title {
+  font-size: 28.8px;
+  margin-bottom: 32px;
+  color: #333;
+}
+
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="auth.js"></script>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="topbar">
+      <div class="logo">LOGO</div>
+      <nav>
+        <a href="Home-Page.html">Home</a>
+        <a href="UsageGuidlines.html">Usage Guidelines</a>
+        <a href="Contact_Us.html">Contact</a>
+        <a href="Art_Collection.html">Art</a>
+        <a href="AboutUs.html">About us</a>
+        <a href="Login.html">Sign/Signup</a>
+      </nav>
+      <div class="search">
+        <input type="text" placeholder="Search" />
+        <button>Search</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="container">
+    <section class="art-details">
+      <div class="info">
+        <h1></h1>
+        <p><b>Type:</b> </p>
+        <p><b>Estimated Period:</b> </p>
+        <p><b>Artist Name:</b></p>
+        <p><b>Description:</b></p>
+        <p><b>Condition Note:</b></p>
+        <div id="miniMap" style="height: 100px; width: 200px; border-radius: 10px; border: 1px solid #ddd;"></div>
+      </div>
+      
+      <!-- Image Slider Section -->
+      <div class="image-slider">
+        <div class="slider-container">
+          <div class="slides">
+            <!-- Images will be inserted here by JavaScript -->
+          </div>
+          
+          <!-- Navigation arrows -->
+          <button class="slider-btn prev-btn">&#10094;</button>
+          <button class="slider-btn next-btn">&#10095;</button>
+          
+          <!-- Image counter -->
+          <div class="image-counter">
+            <span id="current-image">1</span> / <span id="total-images">1</span>
+          </div>
+        </div>
+        
+        <!-- Thumbnails -->
+        <div class="thumbnails">
+          <!-- Thumbnails will be inserted here -->
+        </div>
+      </div>
+    </section>
+    
+    <section class="report">
+      <button id="reportBtn" class="report-btn">Report Content</button>
+
+      <form id="reportForm" class="report-form hidden" onsubmit="submitReport(event)">
+        <h3>Report This Artwork</h3>
+
+        <label for="reason">Reason:</label>
+        <select id="reason" required>
+          <option value="">Select reason</option>
+          <option value="inappropriate">Inappropriate content</option>
+          <option value="inaccurate">Inaccurate information</option>
+          <option value="copyright">Copyright issue</option>
+          <option value="other">Other</option>
+        </select>
+
+        <label for="details">Additional Details:</label>
+        <textarea id="details" rows="4" placeholder="Describe the issue..." required></textarea>
+
+        <button type="submit" class="submit-btn">Submit Report</button>
+      </form>
+    </section>
+
+    <!--Grid-->
+    <section class="art-grid">
+      <h2 class="section-title">Similar Artworks</h2>
+      <div class="grid">
+        <!-- Cards will be populated by JavaScript -->
+      </div>
+    </section>  
+  </main>
+
+  <!--footer-->
+  <footer id="footer">
+    <div class="footer-container">
+      <!-- Brand Section -->
+      <div class="brand">
+        <h2>Indigenous Art Atlas</h2>
+        <p>Email: <a href="mailto:IndegeniousArtAtlas@gmail.com">IndegeniousArtAtlas@gmail.com</a></p>
+        <div class="follow-us">
+          <h3>Follow Us</h3>
+          <ul class="Social-Media">
+            <li><a href="https://facebook.com" target="_blank" class="facebook"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com" target="_blank" class="twitter"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://instagram.com" target="_blank" class="instagram"><i class="fab fa-instagram"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Quick Links Section -->
+      <div class="Links">
+        <h3>Quick Links</h3>
+        <ul class="list">
+          <li><a href="Home-Page.html">Home</a></li>
+          <li><a href="UsageGuidlines.html">Usage Guidelines</a></li>
+          <li><a href="Contact_Us.html">Contact</a></li>
+          <li><a href="AboutUs.html">About us</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Section -->
+      <div class="footer-content">
+        <h3>Contact Us</h3>
+        <p>Phone: +61 239 456 763</p>
+      </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="bottom-bar">
+      <p>&copy; 2025 Indigenous Art Atlas . All rights reserved</p>
+    </div>
+  </footer>
+  
+</body>
+<script src="art-details.js"></script>
+
+</html>

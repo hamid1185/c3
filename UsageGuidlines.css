@@ -1,0 +1,136 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+.Main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+}
+.Guidlines .title {
+  text-align: center;
+  padding: 28px 16px 10px;
+  margin: 18px auto 8px;
+  font-size: 34px;
+  letter-spacing: 0.4px;
+}
+.honour_image {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 24px;
+  background: #fff;
+  border: 1px solid #e7e7e7;
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 22px;
+  overflow: hidden;
+}
+.image {
+  overflow: hidden;
+  border-radius: 12px;
+}
+.image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.Honor {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.Honor h2 {
+  margin: 0 0 10px;
+  font-size: 26px;
+  line-height: 1.2;
+}
+.Honor p {
+  margin: 0;
+  color: #444;
+  line-height: 1.7;
+  font-size: 15px;
+}
+.guidline-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin: 18px 0 24px;
+}
+.guidline-card > .can {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+  border-left: 8px solid #078333;
+}
+.guidline-card > .cannot {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+  border-right: 8px solid #d42f06;
+}
+.guidline-card h3 {
+  margin: 0 0 8px;
+  font-size: 22px;
+  letter-spacing: 0.2px;
+}
+
+.guidline-card ul {
+  margin: 8px 0 0;
+  padding-left: 20px;
+  color: #333;
+  line-height: 1.6;
+}
+
+.standard,
+.Report,
+.Update {
+  background: #fff;
+  border: 1px solid #e9e9e9;
+  border-radius: 14px;
+  padding: 18px 18px 16px 22px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  margin-bottom: 18px;
+}
+.standard h2,
+.Report h2,
+.Update h2 {
+  margin: 10px;
+  font-size: 22px;
+}
+
+.standard ul {
+  margin: 8px 0 0;
+  color: #333;
+  line-height: 1.65;
+  padding-left: 24px;
+}
+.standard li {
+  margin-bottom: 8px;
+  color: #333;
+}
+.Report ul {
+  margin: 8px 0 0;
+  color: #333;
+  line-height: 1.65;
+  padding-left: 24px;
+}
+.Report li {
+  margin-bottom: 8px;
+  color: #333;
+}
+.Update p {
+  margin: 8px 0 0;
+  color: #333;
+  line-height: 1.65;
+}
